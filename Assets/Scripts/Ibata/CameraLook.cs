@@ -5,7 +5,7 @@ public class CameraLook : MonoBehaviour
 {
     public float minPitch = -60f;
     public float maxPitch = 60f;
-
+    private float ControllerPlus = 2.0f;
     private float pitch = 0f;
 
     void Update()
@@ -29,7 +29,7 @@ public class CameraLook : MonoBehaviour
         {
             delta += Gamepad.current.rightStick.ReadValue()
                      * SensitivitySettings.ControllerSensitivity
-                     * adsMul;
+                     * adsMul * ControllerPlus;
         }
 
         // --- è„â∫ÅiPitchÅj ---
