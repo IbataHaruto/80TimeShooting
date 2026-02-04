@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Move Speed")]
-    [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float dashSpeed = 9f;
+    [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float dashSpeed = 11f;
+
+    [SerializeField] private float adsSpeedMultiplier = 0.5f; // ← 追加：ADS 速度低下率
 
     public float OverrideSpeed { get; set; } = -1f;
     public Vector3 HorizontalVelocity { get; private set; }
 
     private CharacterController controller;
+
+    private bool isDashToggled = false;
 
     void Start()
     {
@@ -20,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.IsPaused)
+        {
+            HorizontalVelocity = Vector3.zero;
+            return;
+        }
+
         Vector2 input = Vector2.zero;
 
         // --- キーボード ---
@@ -44,17 +54,30 @@ public class PlayerMovement : MonoBehaviour
 
         input = Vector2.ClampMagnitude(input, 1f);
 
-        // --- ダッシュ ---
-        bool dashKey = Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed;
-        bool dashStick = Gamepad.current != null && Gamepad.current.leftStickButton.isPressed;
+        // --- ダッシュ（トグル） ---
+        bool dashKeyPressed =
+            Keyboard.current != null &&
+            Keyboard.current.leftShiftKey.wasPressedThisFrame;
 
-        float speed = (dashKey || dashStick) ? dashSpeed : walkSpeed;
+        bool dashStickPressed =
+            Gamepad.current != null &&
+            Gamepad.current.leftShoulder.wasPressedThisFrame;
 
-        // --- しゃがみ速度が優先 ---
+        if (dashKeyPressed || dashStickPressed)
+        {
+            isDashToggled = !isDashToggled;
+        }
+
+        float speed = isDashToggled ? dashSpeed : walkSpeed;
+
+        // --- ADS 時は移動速度低下 ---
+        if (ADSController.IsADS)
+            speed *= adsSpeedMultiplier;
+
+        // --- 外部からの速度上書き ---
         if (OverrideSpeed > 0)
             speed = OverrideSpeed;
 
-        // --- 移動方向（速度ベクトル） ---
         HorizontalVelocity =
             (transform.forward * input.y + transform.right * input.x) * speed;
     }

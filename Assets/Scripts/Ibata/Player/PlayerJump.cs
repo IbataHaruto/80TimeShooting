@@ -12,10 +12,17 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundMask;
 
+    [Header("Ceiling Check")]
+    [SerializeField] private float ceilingCheckDistance = 0.1f;
+    [SerializeField] private LayerMask ceilingMask;
+
     private CharacterController controller;
     private PlayerMovement movement;
 
     private Vector3 verticalVelocity;
+
+    // しゃがみ解除直後の「疑似落下補正」を無効化するフラグ
+    private bool suppressGroundSnap = false;
 
     void Awake()
     {
@@ -29,9 +36,21 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        //  ポーズ中はジャンプ・重力・移動を完全停止
+        if (GameStateManager.IsPaused)
+        {
+            verticalVelocity = Vector3.zero;
+            return;
+        }
+
         HandleJump();
         ApplyGravity();
         MoveCharacter();
+    }
+
+    public void SuppressGroundSnap()
+    {
+        suppressGroundSnap = true;
     }
 
     bool IsGrounded()
@@ -50,12 +69,24 @@ public class PlayerJump : MonoBehaviour
         return controller.isGrounded || rayHit;
     }
 
+    //  天井チェック
+    bool IsCeilingHit()
+    {
+        Vector3 origin = transform.position + Vector3.up * (controller.height / 2f);
+        return Physics.Raycast(origin, Vector3.up, ceilingCheckDistance, ceilingMask);
+    }
+
     void HandleJump()
     {
         bool grounded = IsGrounded();
 
         if (grounded && verticalVelocity.y < 0)
-            verticalVelocity.y = -2f;
+        {
+            if (!suppressGroundSnap)
+                verticalVelocity.y = -2f;
+
+            suppressGroundSnap = false;
+        }
 
         bool jumpKey = Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame;
         bool jumpButton = Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame;
@@ -68,6 +99,12 @@ public class PlayerJump : MonoBehaviour
 
     void ApplyGravity()
     {
+        //  天井に当たったら上昇力を即停止（埋まり防止の核心）
+        if (verticalVelocity.y > 0 && IsCeilingHit())
+        {
+            verticalVelocity.y = 0f;
+        }
+
         verticalVelocity.y += gravity * Time.deltaTime;
     }
 
