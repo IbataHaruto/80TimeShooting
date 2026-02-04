@@ -3,19 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    private void Update()
+    public FadeManajer fadeManajer;
+    public FadeIn fadeIn;
+    public void StartGame()
     {
-        Changescene();
+        //StartCoroutine(fadeIn.FadeCoroutine("New Scene"));
+        SceneManager.LoadScene("New Scene");
     }
-    void Changescene()
+    public void ReturnGame()
     {
-        if (Input.GetKey(KeyCode.E))
+        //StartCoroutine(fadeIn.FadeCoroutine("SampleScene"));
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame()
+    {
         {
-            SceneManager.LoadScene("New Scene");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false; // エディタ再生停止
+#else
+    Application.Quit(); // ビルド後アプリを終了
+#endif
         }
-        
+
     }
 
 }
