@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    public FadeManajer fadeManajer;
-    public FadeIn fadeIn;
     public void StartGame()
     {
         //StartCoroutine(fadeIn.FadeCoroutine("New Scene"));

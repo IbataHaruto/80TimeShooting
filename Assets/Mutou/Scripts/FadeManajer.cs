@@ -94,15 +94,4 @@ public class FadeManajer : MonoBehaviour
         fadeImage.color = new Color(0, 0, 0, targetAlpha);
     }
 
-    //public void BackMain()
-    //{
-    //    Debug.Log("aaa");
-    //    SceneManager.LoadScene("SampleScene");
-    //    Destroy(mainCanvasInstance);  // 別シーンに移動したらMain-Canvasを削除
-    //    mainCanvasInstance = null;
-    //    foreach (GameObject uiElement in mainUI)
-    //    {
-    //        uiElement.SetActive(true);
-    //    }
-    //}
 }
