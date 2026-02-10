@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f299694fe396af44830be70abc87cbf, type: 3}
+  m_Name: Peach Data
+  m_EditorClassIdentifier: 
+  fruitName: Peach
+  score: 15
+  maxStack: 5
+  handPrefab: {fileID: -4174647351578168777, guid: ff85a93a228358d4c9dd3e990629da02, type: 3}
+  pickablePrefab: {fileID: 4966405515985445844, guid: 5afdf83cd61bdb247acb7131637cca73, type: 3}
+  icon: {fileID: 1191733128, guid: cdfa7a2ed1641474b836f4d626dae588, type: 3}

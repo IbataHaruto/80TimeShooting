@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f299694fe396af44830be70abc87cbf, type: 3}
+  m_Name: Pear Data
+  m_EditorClassIdentifier: 
+  fruitName: Pear
+  score: 15
+  maxStack: 5
+  handPrefab: {fileID: -1570138565397386234, guid: 715a03f74cab840439bf192a9b8f7338, type: 3}
+  pickablePrefab: {fileID: 5757782226547561125, guid: 358519cbe4b5fe84fbaff00eb4d56f85, type: 3}
+  icon: {fileID: 628441207, guid: a3066eb20dee15e47b3d882df4319aa1, type: 3}
