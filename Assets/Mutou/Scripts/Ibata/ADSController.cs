@@ -11,6 +11,15 @@ public class ADSController : MonoBehaviour
 
     void Update()
     {
+        //  ポーズ中は ADS を完全無効化
+        if (GameStateManager.IsPaused)
+        {
+            IsADS = false; // ポーズに入った瞬間 ADS を解除
+            cam.fieldOfView = normalFov;
+            return;
+        }
+
+        // --- マウス ---
         if (Mouse.current != null)
         {
             if (Mouse.current.rightButton.wasPressedThisFrame)
@@ -20,6 +29,7 @@ public class ADSController : MonoBehaviour
                 IsADS = false;
         }
 
+        // --- ゲームパッド ---
         if (Gamepad.current != null)
         {
             if (Gamepad.current.leftTrigger.wasPressedThisFrame)
