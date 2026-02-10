@@ -5,8 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject image;
+    [SerializeField] GameObject pauseImage;
     [SerializeField] GameObject blome;
     bool isPaused = false;
+    bool isRunning = false;
     [SerializeField] Transform target;
     [SerializeField] Transform target2;
     [SerializeField] Player player;
@@ -28,6 +30,19 @@ public class PauseManager : MonoBehaviour
                 player.MouseCheck();
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isRunning)
+            {
+                StartGame();
+                player.MouseCheck2();
+            }
+            else
+            {
+                StopGame();
+                player.MouseCheck();
+            }
+        }
 
     }
     public void PauseGame()
@@ -43,6 +58,20 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         image.SetActive(false);
+        blome.SetActive(false);
+    }
+    public void StopGame()
+    {
+        Time.timeScale = 0f;
+        isRunning = true;
+        pauseImage.SetActive(true);
+        blome.SetActive(true);
+    }
+    public void StartGame()
+    {
+        Time.timeScale = 0f;
+        isRunning = false;
+        pauseImage.SetActive(false);
         blome.SetActive(false);
     }
 }
