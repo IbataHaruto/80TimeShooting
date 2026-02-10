@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float speed = 0.1f;
     [SerializeField] float gravity = -9.81f;     // 重力加速度
-    [SerializeField] Enemy enemy;
+    [SerializeField] EnemyMover enemy;
     [SerializeField] Rigidbody rb;
     [SerializeField] CharacterController cCon;
     [SerializeField] float slopeLimit = 45f;     // 登れる最大傾斜角度
