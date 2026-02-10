@@ -277,11 +277,11 @@ GameObject:
   - component: {fileID: 6038123172898509824}
   - component: {fileID: 1631074769298054414}
   - component: {fileID: 7787053321424517546}
+  - component: {fileID: 5627861880084669034}
+  - component: {fileID: 5367686932208412414}
   - component: {fileID: 9027386266638344689}
   - component: {fileID: 2062219410292135536}
   - component: {fileID: 7482833042464444514}
-  - component: {fileID: 5627861880084669034}
-  - component: {fileID: 5367686932208412414}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -359,6 +359,7 @@ MonoBehaviour:
   pickDistance: 14
   pickRadius: 0.5
   throwForce: 40
+  throwPos: 1.5
   fruitInventory: {fileID: 0}
   throwInventory: {fileID: 0}
   captureItemPrefab: {fileID: 1941508049398704087, guid: c745652be9c3a624c902b45eb0efd95f, type: 3}
@@ -382,11 +383,40 @@ MonoBehaviour:
   crouchRadius: 0.1
   standRadius: 0.3
   crouchSpeed: 12
-  transitionSpeed: 12
+  crouchDownSpeed: 35
+  standUpSpeed: 20
   ceilingCheckDistance: 7
   ceilingMask:
     serializedVersion: 2
     m_Bits: 63
+--- !u!114 &5627861880084669034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7725778530753393399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdbcd856756b5e4fb3cf97521040b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  pickThrow: {fileID: 1631074769298054414}
+--- !u!114 &5367686932208412414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7725778530753393399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f22c7e02fd23bd43b1771526c9bcb7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  holdPoint: {fileID: 7496108249044399435}
 --- !u!136 &9027386266638344689
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -465,34 +495,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 6637458142193217933}
---- !u!114 &5627861880084669034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725778530753393399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bdbcd856756b5e4fb3cf97521040b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  pickThrow: {fileID: 1631074769298054414}
---- !u!114 &5367686932208412414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725778530753393399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f22c7e02fd23bd43b1771526c9bcb7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  holdPoint: {fileID: 7496108249044399435}
 --- !u!1 &7842764682419646029
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ public class AnimalStatusManager : MonoBehaviour
 {
     public int maxFullness = 100;
 
-    // ★ 満腹度が変わった時に「最大かどうか」も通知する
+    //  満腹度が変わった時に「最大かどうか」も通知する
     public event Action<Animal, bool> OnFullnessChanged;
 
     public void Feed(Animal animal, FruitsData fruit)

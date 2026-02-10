@@ -5,7 +5,7 @@ public class HandItemController : MonoBehaviour
     [SerializeField] private InventoryModel inventory;
     [SerializeField] private Transform holdPoint;
 
-    private ThrowableFruit currentInstance;
+    private ThrowableObject currentInstance;
 
     void OnEnable()
     {
@@ -32,5 +32,5 @@ public class HandItemController : MonoBehaviour
         currentInstance.Hold(holdPoint);
     }
 
-    public ThrowableFruit CurrentInstance => currentInstance;
+    public ThrowableObject CurrentInstance => currentInstance;
 }

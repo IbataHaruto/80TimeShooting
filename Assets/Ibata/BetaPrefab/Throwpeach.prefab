@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b6ebf7565c80a5a4ca98f56b3d6cd759, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,7 +108,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -154,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eba2f9381cd5b246b23ecc407cf93d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upwardGravity: -15
+  downwardGravity: -30
 --- !u!114 &-2863257500171705321
 MonoBehaviour:
   m_ObjectHideFlags: 0

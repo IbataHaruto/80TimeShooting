@@ -6,11 +6,15 @@ public class PlayerPickThrow : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float pickDistance = 8f;
     [SerializeField] private float pickRadius = 0.5f;
-    [SerializeField] private float throwForce = 15f;
 
-    [SerializeField] private InventoryModel fruitInventory;      // 果物
-    [SerializeField] private ThrowItemInventory throwInventory;  // 捕獲アイテム
-    [SerializeField] private GameObject captureItemPrefab;       // 捕獲アイテムPrefab
+    [Header("Throw Settings")]
+    [SerializeField] private float throwForce = 15f;
+    [SerializeField] private float throwPos = 1.5f;   // 基本距離
+    [SerializeField] private float pitchAdjust = -10f; // 射出角度補正
+
+    [SerializeField] private InventoryModel fruitInventory;
+    [SerializeField] private ThrowItemInventory throwInventory;
+    [SerializeField] private GameObject captureItemPrefab;
 
     [SerializeField] private HandItemController hand;
     [SerializeField] private CrosshairController crosshair;
@@ -27,13 +31,12 @@ public class PlayerPickThrow : MonoBehaviour
         input = GetComponent<PlayerInput>();
         pickAction = input.actions["Pick"];
         throwAction = input.actions["Throw"];
-        switchThrowItemAction = input.actions["SwitchThrowItem"]; // 十字キー上
+        switchThrowItemAction = input.actions["SwitchThrowItem"];
     }
 
     public void ExitThrowItemMode()
     {
         isThrowItemMode = false;
-        Debug.Log("果物インベントリ操作 → 捕獲モード終了");
     }
 
     void Update()
@@ -41,53 +44,43 @@ public class PlayerPickThrow : MonoBehaviour
         if (GameStateManager.IsPaused)
             return;
 
-        // --- 十字キー上で捕獲モード ON ---
         if (switchThrowItemAction.WasPressedThisFrame())
-        {
             isThrowItemMode = true;
-            Debug.Log("捕獲アイテムモードに切り替え");
-        }
 
-        // --- SphereCast（拾い判定） ---
+        // --- クロスヘアのレイ ---
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-        PickableFruit target = null;
 
+        // --- 拾い判定 ---
+        PickableFruit target = null;
         if (Physics.SphereCast(ray, pickRadius, out RaycastHit hit, pickDistance))
             target = hit.collider.GetComponent<PickableFruit>();
 
         crosshair.SetCanPick(target != null);
 
-        // --- 拾う（果物） ※捕獲モード中でも拾える ---
+        // --- 拾う ---
         if (target != null && pickAction.WasPressedThisFrame())
         {
             if (fruitInventory.Add(target.data))
             {
                 Destroy(target.gameObject);
-
-                //  捕獲モードを終了する
                 ExitThrowItemMode();
             }
         }
 
-        // --- 投げる（捕獲アイテム） ---
-        if (throwAction.WasPressedThisFrame() && isThrowItemMode)
-        {
-            if (!throwInventory.UseOne())
-            {
-                Debug.Log("捕獲アイテムがありません");
-                return;
-            }
+        // --- 投げ方向（クロスヘア方向） ---
+        Vector3 dir = ray.direction;
 
-            Vector3 spawnPos = cam.transform.position + cam.transform.forward * 0.5f;
+        // --- 射出角度補正（上下方向） ---
+        dir = Quaternion.AngleAxis(pitchAdjust, cam.transform.right) * dir;
 
-            var world = Instantiate(captureItemPrefab, spawnPos, Quaternion.identity);
-            var rb = world.GetComponent<Rigidbody>();
+        // --- pitch に応じて距離補正 ---
+        float pitch = cam.GetComponent<CameraLook>().Pitch;
+        float pitch01 = Mathf.InverseLerp(-60f, 60f, pitch);
+        float distanceMul = Mathf.Lerp(1f, 0.3f, pitch01);
+        float adjustedThrowPos = throwPos * distanceMul;
 
-            rb.isKinematic = false;
-            rb.useGravity = true;
-
-            rb.AddForce(cam.transform.forward * throwForce, ForceMode.VelocityChange);
-        }
+        // --- 生成位置 ---
+        Vector3 spawnPos = ray.origin + ray.direction * adjustedThrowPos;
 
         // --- 投げる（果物） ---
         if (throwAction.WasPressedThisFrame() && !isThrowItemMode)
@@ -95,18 +88,31 @@ public class PlayerPickThrow : MonoBehaviour
             var data = fruitInventory.CurrentItemData;
             if (data != null)
             {
-                Vector3 spawnPos = cam.transform.position + cam.transform.forward * 0.5f;
-
                 var world = Instantiate(data.pickablePrefab, spawnPos, Quaternion.identity);
-                var rb = world.GetComponent<Rigidbody>();
 
-                rb.isKinematic = false;
-                rb.useGravity = true;
-
-                rb.AddForce(cam.transform.forward * throwForce, ForceMode.VelocityChange);
+                var throwable = world.GetComponent<ThrowableObject>();
+                throwable.Throw(dir * throwForce);
 
                 fruitInventory.RemoveOne();
             }
+        }
+
+        // --- 投げる（捕獲アイテム） ---
+        if (throwAction.WasPressedThisFrame() && isThrowItemMode)
+        {
+            if (!throwInventory.UseOne())
+                return;
+
+            var world = Instantiate(captureItemPrefab, spawnPos, Quaternion.identity);
+
+            // ★ 緑軸（up）が閉じている側 → プレイヤー方向（-dir）へ向ける
+            world.transform.rotation = Quaternion.FromToRotation(world.transform.up, -dir);
+
+            // 投げ方向（角度補正）
+            Vector3 netDir = Quaternion.AngleAxis(10f, cam.transform.right) * dir;
+
+            var throwable = world.GetComponent<ThrowableObject>();
+            throwable.Throw(netDir * throwForce);
         }
     }
 }

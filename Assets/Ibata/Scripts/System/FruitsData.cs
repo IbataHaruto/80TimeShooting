@@ -11,10 +11,10 @@ public class FruitsData : ScriptableObject
     public int maxStack = 5;
 
     [Header("手持ち用プレハブ（UIモデル）")]
-    public ThrowableFruit handPrefab;
+    public ThrowableObject handPrefab;
 
     [Header("ワールド用プレハブ（拾える & 投げられる）")]
-    public PickableFruit pickablePrefab;
+    public GameObject pickablePrefab;
 
     [Header("UIアイコン")]
     public Sprite icon;

@@ -13,6 +13,8 @@ public class CameraLook : MonoBehaviour
 
     private const float gamepadThreshold = 0.1f; // スティックのデッドゾーン
 
+    public float Pitch => pitch;
+
     void Start()
     {
         // --- FPS モード：カーソルを中央固定 ---
