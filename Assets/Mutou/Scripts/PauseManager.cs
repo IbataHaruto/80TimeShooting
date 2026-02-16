@@ -69,7 +69,7 @@ public class PauseManager : MonoBehaviour
     }
     public void StartGame()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         isRunning = false;
         pauseImage.SetActive(false);
         blome.SetActive(false);

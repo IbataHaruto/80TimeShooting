@@ -10,6 +10,7 @@ public class BirdScript : MonoBehaviour
     private bool flyFlag = false;
     private bool shiftFlag = false;
     private Vector3 targetPosition;
+    [SerializeField] Animator animator;
 
     void Update()
     {
@@ -38,12 +39,14 @@ public class BirdScript : MonoBehaviour
             transform.position += transform.forward * moveSpeed;
 
             Debug.Log("Fly");
+            //animator.speed = 1;
         }
         else
         {
             Debug.Log("Not Fly");
+            //animator.speed = 0;
         }
-        if (transform.position.y >= 15)
+        if (transform.position.y >= 50)
         {
             Destroy(gameObject);
             Debug.Log("Not Object");
