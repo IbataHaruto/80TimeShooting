@@ -5,11 +5,11 @@ public class BottonManajer : MonoBehaviour
 {
     public void SampleBotton()
     {
-        Debug.Log("mission");
+        SceneManager.LoadScene("SampleScene");
     }
     public void SampleBotton2()
     {
-        Debug.Log("Animal");
+       Debug.Log("Animal");
     }
 
 }

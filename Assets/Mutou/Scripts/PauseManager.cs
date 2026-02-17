@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.InputSystem;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject image;
     [SerializeField] GameObject pauseImage;
     [SerializeField] GameObject blome;
+    [SerializeField] GameObject miniMap;
     bool isPaused = false;
     bool isRunning = false;
     [SerializeField] Transform target;
@@ -16,8 +16,15 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            PauseSwitch();
+        }
+    }
+    public void PauseSwitch()
+    {
         float dis = Vector3.Distance(target2.position, target.position);
-        if(dis <= 5 && Input.GetKeyDown(KeyCode.Space))
+        if (dis <= 5 )
         {
             if (isPaused)
             {
@@ -32,7 +39,7 @@ public class PauseManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isRunning)
+            if (isRunning)
             {
                 StartGame();
                 player.MouseCheck2();
@@ -51,6 +58,7 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         image.SetActive(true);
         blome.SetActive(true);
+        miniMap.SetActive(false);
     }
 
     public void ResumeGame()
@@ -59,6 +67,7 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         image.SetActive(false);
         blome.SetActive(false);
+        miniMap.SetActive(true);
     }
     public void StopGame()
     {
