@@ -4,30 +4,41 @@ using UnityEngine.InputSystem;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] private InventoryModel inventory;
-    [SerializeField] private PlayerPickThrow pickThrow; //  追加
+    [SerializeField] private PlayerPickThrow pickThrow;
+
+    private void Start()
+    {
+        inventory.SetIndex(0);
+        pickThrow.ExitCaptureMode(); // 念のため捕獲モードも OFF にしておく
+    }
 
     void Update()
     {
         if (GameStateManager.IsPaused)
             return;
 
-        // --- マウスホイールで切り替え ---
+        int before = inventory.CurrentIndex;
+
+        // ============================
+        // マウスホイール（ループする）
+        // ============================
         if (Mouse.current != null)
         {
             float scroll = Mouse.current.scroll.ReadValue().y;
+
             if (scroll > 0)
             {
-                inventory.Next();
-                pickThrow.ExitThrowItemMode(); //  捕獲モード終了
+                inventory.Next();   // ← ループする
             }
             if (scroll < 0)
             {
-                inventory.Prev();
-                pickThrow.ExitThrowItemMode(); //  捕獲モード終了
+                inventory.Prev();   // ← ループする
             }
         }
 
-        // --- 数字キーで直接選択 ---
+        // ============================
+        // 数字キー（1~4のみ有効）
+        // ============================
         if (Keyboard.current != null)
         {
             for (int i = 0; i < inventory.SlotCount; i++)
@@ -36,24 +47,34 @@ public class InventoryController : MonoBehaviour
                 if (Keyboard.current[key].wasPressedThisFrame)
                 {
                     inventory.SetIndex(i);
-                    pickThrow.ExitThrowItemMode(); //  捕獲モード終了
                 }
             }
+            // 5以上は無視
         }
 
-        // --- ゲームパッド（十字キー左右） ---
+        // ============================
+        // D-pad（ループする）
+        // ============================
         if (Gamepad.current != null)
         {
             if (Gamepad.current.dpad.right.wasPressedThisFrame)
-            {
                 inventory.Next();
-                pickThrow.ExitThrowItemMode(); //  捕獲モード終了
-            }
+
             if (Gamepad.current.dpad.left.wasPressedThisFrame)
-            {
                 inventory.Prev();
-                pickThrow.ExitThrowItemMode(); //  捕獲モード終了
-            }
+        }
+
+        // ============================
+        // スロット変更後の捕獲モード更新
+        // ============================
+        int after = inventory.CurrentIndex;
+
+        if (after != before)
+        {
+            if (inventory.IsCaptureSlot(after))
+                pickThrow.EnterCaptureMode();
+            else
+                pickThrow.ExitCaptureMode();
         }
     }
 }

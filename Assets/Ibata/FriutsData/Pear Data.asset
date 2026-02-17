@@ -15,6 +15,6 @@ MonoBehaviour:
   fruitName: Pear
   score: 15
   maxStack: 5
-  handPrefab: {fileID: -1570138565397386234, guid: 715a03f74cab840439bf192a9b8f7338, type: 3}
+  handPrefab: {fileID: 3102030500173812362, guid: 358519cbe4b5fe84fbaff00eb4d56f85, type: 3}
   pickablePrefab: {fileID: 3102030500173812362, guid: 358519cbe4b5fe84fbaff00eb4d56f85, type: 3}
-  icon: {fileID: 628441207, guid: a3066eb20dee15e47b3d882df4319aa1, type: 3}
+  icon: {fileID: -1671652852, guid: 206f7ac4c3de1924b85160e196823e35, type: 3}

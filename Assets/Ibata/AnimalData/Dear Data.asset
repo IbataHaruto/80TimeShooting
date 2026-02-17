@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalName: Dear
   favoriteFruits:
-  - {fileID: 11400000, guid: d2d68e21a49330444aeba04a9ecfe989, type: 2}
+  - {fileID: 11400000, guid: 843d523f146f22648b2782ee1b1e025a, type: 2}
   fullness: 0
+  capturedCount: 0
+  icon: {fileID: 1341661997, guid: 433ed81c876bf50498b071a1f32d4910, type: 3}

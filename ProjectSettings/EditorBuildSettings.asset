@@ -6,15 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Mutou/Scenes/New Scene.unity
-    guid: d7d2d5a3d19fc3c41b3b87bb11bb574f
-  - enabled: 1
-    path: Assets/Mutou/Scenes/SampleScene.unity
-=======
-    path: Assets/Ibata/Scenes/GameScene.unity
->>>>>>> 9c3b426e5960d5b54ca09f4ba92ad3448166f39b
+    path: Assets/Ibata/Scenes/InGameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Ibata/Scenes/GameClear.unity
+    guid: 191485d5ed9daeb43b706b1b760755a3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

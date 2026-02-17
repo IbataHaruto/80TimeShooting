@@ -18,15 +18,18 @@ public class InventoryModel : MonoBehaviour
     public FruitsData CurrentItemData =>
         CurrentSlot?.Data;
 
-    [SerializeField] private int slotCount = 3;
-    public int SlotCount => slotCount;
+    [SerializeField] private int fruitSlotCount = 3; // 果物スロット数
+    public int SlotCount => fruitSlotCount + 1;      // +1 が捕獲スロット
+
+    // 捕獲スロット判定
+    public bool IsCaptureSlot(int index) => index == fruitSlotCount;
 
     // -------------------------
-    // Add
+    // Add（果物のみ）
     // -------------------------
     public bool Add(FruitsData data)
     {
-        // 1. 既存スロットに追加
+        // 既存スロット
         for (int i = 0; i < Slots.Count; i++)
         {
             var slot = Slots[i];
@@ -39,8 +42,8 @@ public class InventoryModel : MonoBehaviour
             }
         }
 
-        // 2. 新規スロット
-        if (Slots.Count < slotCount)
+        // 新規スロット
+        if (Slots.Count < fruitSlotCount)
         {
             Slots.Add(new InventorySlot(data));
             SetIndex(Slots.Count - 1);
@@ -52,7 +55,7 @@ public class InventoryModel : MonoBehaviour
     }
 
     // -------------------------
-    // RemoveOne
+    // RemoveOne（果物）
     // -------------------------
     public void RemoveOne()
     {
@@ -84,8 +87,11 @@ public class InventoryModel : MonoBehaviour
     // -------------------------
     public void SetIndex(int index)
     {
-        if (index >= 0 && index < Slots.Count)
+        if (index >= 0 && index < SlotCount)
         {
+            if (CurrentIndex == index)
+                return; // ← これが重要（同じスロットなら何もしない）
+
             CurrentIndex = index;
             NotifyChanged();
         }
@@ -93,17 +99,15 @@ public class InventoryModel : MonoBehaviour
 
     public void Next()
     {
-        if (Slots.Count == 0 || CurrentIndex < 0) return;
-
-        CurrentIndex = (CurrentIndex + 1) % Slots.Count;
+        if (SlotCount == 0) return;
+        CurrentIndex = (CurrentIndex + 1) % SlotCount;
         NotifyChanged();
     }
 
     public void Prev()
     {
-        if (Slots.Count == 0 || CurrentIndex < 0) return;
-
-        CurrentIndex = (CurrentIndex - 1 + Slots.Count) % Slots.Count;
+        if (SlotCount == 0) return;
+        CurrentIndex = (CurrentIndex - 1 + SlotCount) % SlotCount;
         NotifyChanged();
     }
 

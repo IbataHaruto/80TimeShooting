@@ -6,19 +6,22 @@ public class ThrowableObject : MonoBehaviour
     private Collider col;
 
     [Header("Gravity Settings")]
-    [SerializeField] private float upwardGravity = -9.81f;   // 上昇中の重力（弱め）
-    [SerializeField] private float downwardGravity = -30f;   // 下降中の重力（強め）
+    [SerializeField] private float upwardGravity = -9.81f;
+    [SerializeField] private float downwardGravity = -30f;
 
     private bool isThrown = false;
+
+    // ★ ポーズ中の速度保存用
+    private Vector3 savedVelocity;
+    private bool wasPaused = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
 
-        // ワールドに置かれた状態
         rb.isKinematic = false;
-        rb.useGravity = true; // 独自重力を使う
+        //rb.useGravity = false; // 独自重力
         col.enabled = true;
         isThrown = false;
     }
@@ -49,11 +52,32 @@ public class ThrowableObject : MonoBehaviour
 
     void FixedUpdate()
     {
+        //  ポーズ中の処理
+        if (GameStateManager.IsPaused)
+        {
+            if (!wasPaused)
+            {
+                // 初回だけ保存
+                savedVelocity = rb.linearVelocity;
+                rb.isKinematic = true;   // 完全停止
+                wasPaused = true;
+            }
+            return;
+        }
+
+        //  ポーズ解除時の処理
+        if (wasPaused)
+        {
+            rb.isKinematic = false;       // 物理再開
+            rb.linearVelocity = savedVelocity; // 速度復元
+            wasPaused = false;
+        }
+
         if (!isThrown || rb.isKinematic)
             return;
 
+        // 独自重力
         float g = rb.linearVelocity.y > 0 ? upwardGravity : downwardGravity;
-
         rb.AddForce(Vector3.up * g, ForceMode.Acceleration);
     }
 }

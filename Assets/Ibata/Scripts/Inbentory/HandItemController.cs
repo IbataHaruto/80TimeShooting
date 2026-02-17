@@ -19,16 +19,32 @@ public class HandItemController : MonoBehaviour
 
     void UpdateHandItem(FruitsData data)
     {
+        SetHandItem(data?.handPrefab);
+    }
+
+    public void SetHandItem(GameObject prefab)
+    {
+        // 既存の手持ちを削除
         if (currentInstance != null)
         {
             Destroy(currentInstance.gameObject);
             currentInstance = null;
         }
 
-        if (data == null)
+        if (prefab == null)
             return;
 
-        currentInstance = Instantiate(data.handPrefab);
+        // 新しい手持ちを生成
+        GameObject obj = Instantiate(prefab);
+        currentInstance = obj.GetComponent<ThrowableObject>();
+
+        //  元のスケールを取得
+        Vector3 originalScale = obj.transform.localScale;
+
+        //  手に持つときは 1/2 に縮小
+        obj.transform.localScale = originalScale * 0.5f;
+
+        // 手に持つ処理
         currentInstance.Hold(holdPoint);
     }
 
