@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: d091f7864bb1a674ca22ce119e202803
+AssetOrigin:
+  serializedVersion: 1
+  productId: 336748
+  packageName: 3D| Low Poly Forest Pack
+  packageVersion: 1.0
+  assetPath: Assets/LowPoly_ForestPack/Models/CircleTree_Winter.fbx
+  uploadId: 797358
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -115,10 +122,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 336748
-  packageName: 3D| Low Poly Forest Pack
-  packageVersion: 1.0
-  assetPath: Assets/LowPoly_ForestPack/Models/CircleTree_Winter.fbx
-  uploadId: 797358

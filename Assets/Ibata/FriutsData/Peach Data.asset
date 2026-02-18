@@ -15,6 +15,6 @@ MonoBehaviour:
   fruitName: Peach
   score: 15
   maxStack: 5
-  handPrefab: {fileID: -4174647351578168777, guid: ff85a93a228358d4c9dd3e990629da02, type: 3}
-  pickablePrefab: {fileID: 4966405515985445844, guid: 5afdf83cd61bdb247acb7131637cca73, type: 3}
-  icon: {fileID: 1191733128, guid: cdfa7a2ed1641474b836f4d626dae588, type: 3}
+  handPrefab: {fileID: 6752632237286408251, guid: 5afdf83cd61bdb247acb7131637cca73, type: 3}
+  pickablePrefab: {fileID: 6752632237286408251, guid: 5afdf83cd61bdb247acb7131637cca73, type: 3}
+  icon: {fileID: -2022984668, guid: f6ec48a663b489041bdf67af95725811, type: 3}

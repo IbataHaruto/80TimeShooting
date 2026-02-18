@@ -15,6 +15,6 @@ MonoBehaviour:
   fruitName: Apple
   score: 15
   maxStack: 5
-  handPrefab: {fileID: 7690530740942209553, guid: 6f8a6fb3ad4e74849ae5b10cc2c6b5b5, type: 3}
-  pickablePrefab: {fileID: 4862283299782639960, guid: 184df044a735cb749b82aad138e4ca31, type: 3}
-  icon: {fileID: 315893402, guid: 45fca36c554a1da42b2f2073be3dddc7, type: 3}
+  handPrefab: {fileID: 1468946561075522727, guid: 184df044a735cb749b82aad138e4ca31, type: 3}
+  pickablePrefab: {fileID: 1468946561075522727, guid: 184df044a735cb749b82aad138e4ca31, type: 3}
+  icon: {fileID: 1265720113, guid: 32796adb370e4e24388b2cded9ffaa5d, type: 3}

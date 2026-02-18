@@ -287,8 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652fdd49537a19547a83a7e5c4a11db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeManajer: {fileID: 141128759}
-  fadeIn: {fileID: 0}
 --- !u!4 &187595062
 Transform:
   m_ObjectHideFlags: 0
