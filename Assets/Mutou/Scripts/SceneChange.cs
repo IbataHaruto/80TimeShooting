@@ -8,11 +8,7 @@ public class SceneChange : MonoBehaviour
         //StartCoroutine(fadeIn.FadeCoroutine("New Scene"));
         SceneManager.LoadScene("New Scene");
     }
-    public void ReturnGame()
-    {
-        //StartCoroutine(fadeIn.FadeCoroutine("SampleScene"));
-        SceneManager.LoadScene("SampleScene");
-    }
+
     public void GameScene()
     {
         SceneManager.LoadScene("GameScene");
