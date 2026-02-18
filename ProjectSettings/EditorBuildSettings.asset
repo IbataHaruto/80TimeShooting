@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mutou/Scenes/New Scene.unity
     guid: d7d2d5a3d19fc3c41b3b87bb11bb574f
+  - enabled: 1
+    path: Assets/Mutou/Scenes/TitleScene.unity
+    guid: 40627fb360b43854aa9f5091a8c48116
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
