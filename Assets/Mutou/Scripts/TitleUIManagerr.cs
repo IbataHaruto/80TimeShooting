@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -183,6 +185,10 @@ public class TitleUIManager : MonoBehaviour
         yield return null; 
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+    }
+    public void GameScene()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 
     public void QuitGame()
