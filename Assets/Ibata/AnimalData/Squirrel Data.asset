@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5bdd2fcc321ff4c85ce01a342662bb, type: 3}
   m_Name: Squirrel Data
   m_EditorClassIdentifier: 
-  animalName: Squirrel
+  animalName: "\u308A\u3059"
   favoriteFruits:
   - {fileID: 11400000, guid: ab1ee78720c577f4e82aa74bca300de0, type: 2}
   fullness: 0
-  capturedCount: 0
   icon: {fileID: 0}
+  description: 

@@ -33,9 +33,35 @@ public class EnemyFly : MonoBehaviour
         animal.currentFullness < animal.manager.maxFullness;
 
     private Vector3 flyDirection;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+
+        // 空中動物は Meal を無視
+        animal.OnEat += () =>
+        {
+            Debug.Log("[EnemyFly] Meal を無視（空中動物）");
+        };
+    }
 
     void Update()
     {
+        // Pause 中は完全停止（アニメも停止）
+        if (GameStateManager.IsPaused)
+        {
+            if (animator != null)
+                animator.speed = 0f;
+
+            return;
+        }
+        else
+        {
+            if (animator != null)
+                animator.speed = 1f;
+        }
+
         if (!CanMove)
             return;
 
@@ -91,13 +117,10 @@ public class EnemyFly : MonoBehaviour
         Vector3 baseDir = -toPlayer.normalized;
 
         float angleY = Random.Range(-80f, 80f);
-
-        //  上方向には行かないように angleX を 0 にする
         float angleX = 0f;
 
         flyDirection = Quaternion.Euler(angleX, angleY, 0) * baseDir;
 
-        //  Y 成分を完全に消す
         flyDirection.y = 0f;
 
         if (flyDirection.sqrMagnitude < 0.001f)
@@ -105,6 +128,7 @@ public class EnemyFly : MonoBehaviour
 
         flyDirection.Normalize();
     }
+
     private void IdleFly()
     {
         if (flyDirection == Vector3.zero)
@@ -129,15 +153,11 @@ public class EnemyFly : MonoBehaviour
     private void DecideIdleDirection()
     {
         float angleY = Random.Range(0f, 360f);
-
-        //  Idle も上下に動かない
         float angleX = 0f;
 
         flyDirection = Quaternion.Euler(angleX, angleY, 0) * Vector3.forward;
 
-        //  Y 成分を完全に消す
         flyDirection.y = 0f;
-
         flyDirection.Normalize();
     }
 

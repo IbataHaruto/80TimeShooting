@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Image icon;
-    [SerializeField] private Image countImage;        // 数字スプライト
-    [SerializeField] private Sprite[] numberSprites;  // 0~9 のスプライト
+    [SerializeField] private Image countImage;
+
+    // 数字スプライトセット（0~9）
+    [SerializeField] private NumberSpriteSet numberSprites;
 
     /// <summary>
     /// showOne = true の場合、1個でも数字を表示する
@@ -33,6 +35,6 @@ public class InventoryUI : MonoBehaviour
 
         // 1桁のみ対応（0~9）
         int digit = Mathf.Clamp(count, 0, 9);
-        countImage.sprite = numberSprites[digit];
+        countImage.sprite = numberSprites.digits[digit];
     }
 }

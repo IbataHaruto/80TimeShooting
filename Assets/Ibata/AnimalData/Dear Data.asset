@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5bdd2fcc321ff4c85ce01a342662bb, type: 3}
   m_Name: Dear Data
   m_EditorClassIdentifier: 
-  animalName: Dear
+  animalName: "\u30B7\u30AB"
   favoriteFruits:
   - {fileID: 11400000, guid: 843d523f146f22648b2782ee1b1e025a, type: 2}
   fullness: 0

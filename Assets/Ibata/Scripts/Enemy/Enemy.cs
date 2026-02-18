@@ -33,37 +33,78 @@ public class Enemy : MonoBehaviour
 
     public Animal animal;
 
+    // Meal 中フラグ
+    private bool isEating = false;
+
+    // Meal アニメが無い動物用フォールバック
+    [SerializeField] float mealMaxTime = 2.0f;
+    private float mealTimer = 0f;
+
     public bool CanMove =>
         !animal.isCaptured &&
-        animal.currentFullness < animal.manager.maxFullness;
+        animal.currentFullness < animal.manager.maxFullness &&
+        !isEating;
 
     private Vector3 runDirection;
     private Vector3 wanderDirection;
 
     private NavMeshAgent agent;
+    private Animator animator;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+
         agent.updateRotation = false;
         agent.updateUpAxis = true;
+    }
+
+    void Start()
+    {
+        animal.OnEat += StartMeal;
     }
 
     void Update()
     {
         // -------------------------
-        // Pause 時は完全停止
+        // Pause 中は完全停止（アニメも停止）
         // -------------------------
         if (GameStateManager.IsPaused)
         {
             agent.isStopped = true;
             agent.ResetPath();
             agent.velocity = Vector3.zero;
+
+            if (animator != null)
+                animator.speed = 0f;
+
             return;
         }
         else
         {
-            agent.isStopped = false;
+            if (animator != null)
+                animator.speed = 1f;
+        }
+
+        // -------------------------
+        // Meal 中は完全停止
+        // -------------------------
+        if (isEating)
+        {
+            mealTimer += Time.deltaTime;
+
+            // Meal アニメが無い動物用フォールバック
+            if (mealTimer >= mealMaxTime)
+            {
+                Debug.Log("[Enemy] Meal フォールバック終了 → アニメ無し動物");
+                EndMeal();
+            }
+
+            agent.isStopped = true;
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            return;
         }
 
         // -------------------------
@@ -84,18 +125,12 @@ public class Enemy : MonoBehaviour
             dis <= stealthIgnoreRange ||
             (!playerCrouch && dis <= normalDetectRange);
 
-        // -------------------------
-        // プレイヤー発見 → 逃走
-        // -------------------------
         if (playerInRange)
         {
             StartRunAway();
             return;
         }
 
-        // -------------------------
-        // 逃走中
-        // -------------------------
         if (isRunningAway)
         {
             if (stateTimer >= stateChangeCooldown)
@@ -110,12 +145,42 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // -------------------------
-        // Idle（徘徊）
-        // -------------------------
         IdleWalk();
     }
 
+    // -------------------------
+    // Meal 開始
+    // -------------------------
+    private void StartMeal()
+    {
+        Debug.Log("[Enemy] StartMeal() 呼ばれた → 食事開始");
+
+        isEating = true;
+        animal.isEating = true;
+
+        mealTimer = 0f;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+    }
+
+    // -------------------------
+    // Meal 終了（Animator から呼ぶ or フォールバック）
+    // -------------------------
+    public void EndMeal()
+    {
+        Debug.Log("[Enemy] EndMeal() 呼ばれた → 食事終了、移動再開");
+
+        isEating = false;
+        animal.isEating = false;
+
+        agent.isStopped = false;
+    }
+
+    // -------------------------
+    // RunAway
+    // -------------------------
     private void StartRunAway()
     {
         if (!isRunningAway)
@@ -147,13 +212,6 @@ public class Enemy : MonoBehaviour
         runDirection.Normalize();
     }
 
-    private void DecideWanderDirection()
-    {
-        float angle = Random.Range(0f, 360f);
-        wanderDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-        wanderDirection.Normalize();
-    }
-
     public void RunAway()
     {
         changeTimer += Time.deltaTime;
@@ -179,6 +237,16 @@ public class Enemy : MonoBehaviour
 
         if (agent.velocity.sqrMagnitude > 0.01f)
             transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+    }
+
+    // -------------------------
+    // Idle Walk
+    // -------------------------
+    private void DecideWanderDirection()
+    {
+        float angle = Random.Range(0f, 360f);
+        wanderDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+        wanderDirection.Normalize();
     }
 
     private void IdleWalk()

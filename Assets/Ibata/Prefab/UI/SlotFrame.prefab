@@ -167,13 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 6571057486811408223}
   countImage: {fileID: 3294074431289223698}
-  numberSprites:
-  - {fileID: 1341661997, guid: 433ed81c876bf50498b071a1f32d4910, type: 3}
-  - {fileID: 400323957, guid: e125b8028f37f304d90460bf939e0759, type: 3}
-  - {fileID: 215722395, guid: 74ab5581b80703a40a6a87803a0b16fd, type: 3}
-  - {fileID: -1646416183, guid: 59628e0e6ee877f47a0fdb37ee01e403, type: 3}
-  - {fileID: 478662373, guid: d4138c179d7c75e41bde5a7aeea791c4, type: 3}
-  - {fileID: -327179478, guid: 44ce47814969c9542ba9b4f70b680222, type: 3}
+  numberSprites: {fileID: 11400000, guid: 48ee96b1c2371e24cbfd824bee217081, type: 2}
 --- !u!1 &4066262982918549795
 GameObject:
   m_ObjectHideFlags: 0

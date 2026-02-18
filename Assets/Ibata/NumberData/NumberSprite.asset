@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b227dad9854c849bd7cd74d07aa1cb, type: 3}
+  m_Name: NumberSprite
+  m_EditorClassIdentifier: 
+  digits:
+  - {fileID: 1341661997, guid: 433ed81c876bf50498b071a1f32d4910, type: 3}
+  - {fileID: 400323957, guid: e125b8028f37f304d90460bf939e0759, type: 3}
+  - {fileID: 215722395, guid: 74ab5581b80703a40a6a87803a0b16fd, type: 3}
+  - {fileID: -1646416183, guid: 59628e0e6ee877f47a0fdb37ee01e403, type: 3}
+  - {fileID: 478662373, guid: d4138c179d7c75e41bde5a7aeea791c4, type: 3}
+  - {fileID: -327179478, guid: 44ce47814969c9542ba9b4f70b680222, type: 3}
+  - {fileID: -699040730, guid: c3b07287142af2e41842b4cadfac908c, type: 3}
+  - {fileID: -1401310230, guid: 4ae0892ecfce3334187ae41f1597c82e, type: 3}
+  - {fileID: 1086956375, guid: d38114ac9bd7668498edfeefd766abd3, type: 3}
+  - {fileID: 1225162172, guid: 7f4ffe1d4367c474098a136b6c9bdea6, type: 3}

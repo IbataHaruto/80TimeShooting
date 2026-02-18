@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5bdd2fcc321ff4c85ce01a342662bb, type: 3}
   m_Name: SnowFairy Data
   m_EditorClassIdentifier: 
-  animalName: SnowFairy
+  animalName: "\u30B7\u30DE\u30A8\u30CA\u30AC"
   favoriteFruits:
   - {fileID: 11400000, guid: d82aa3ab6a76aa740b3eb9dc37a3f199, type: 2}
   fullness: 0
-  capturedCount: 0
-  icon: {fileID: 478662373, guid: d4138c179d7c75e41bde5a7aeea791c4, type: 3}
+  icon: {fileID: 1780622843, guid: 661ba5db4f19bf54ba836ee28077fbc5, type: 3}
+  description: 

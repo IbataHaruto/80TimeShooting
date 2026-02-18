@@ -1,11 +1,16 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GoalEntryUI : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
-    [SerializeField] private TMP_Text countText;
+
+    [Header("表示先")]
+    [SerializeField] private Image currentImage;   // 捕まえた数
+    [SerializeField] private Image requiredImage;  // 目標数
+
+    [Header("数字スプライトセット")]
+    [SerializeField] private NumberSpriteSet numberSprites;
 
     private AnimalData data;
     private int required;
@@ -25,6 +30,15 @@ public class GoalEntryUI : MonoBehaviour
     public void UpdateCount()
     {
         int current = manager.GetCapturedCount(data);
-        countText.text = $"{current} / {required}";
+
+        SetDigitSprite(currentImage, current);
+        SetDigitSprite(requiredImage, required);
+    }
+
+    private void SetDigitSprite(Image target, int number)
+    {
+        number = Mathf.Clamp(number, 0, numberSprites.digits.Length - 1);
+        target.sprite = numberSprites.digits[number];
+        target.enabled = true;
     }
 }

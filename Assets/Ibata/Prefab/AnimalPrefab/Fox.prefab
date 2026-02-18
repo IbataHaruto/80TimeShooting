@@ -562,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7bc13a239f04a204cb8f7f6bca82c018, type: 3}
       propertyPath: m_Name
-      value: Fox_model
+      value: Fox
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7bc13a239f04a204cb8f7f6bca82c018, type: 3}
       propertyPath: m_Layer

@@ -594,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a7ad3d81a74e2ec4e812105852afc26d, type: 3}
       propertyPath: m_Name
-      value: Rabbit_model
+      value: Rabbit
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a7ad3d81a74e2ec4e812105852afc26d, type: 3}
       propertyPath: m_Layer
@@ -837,7 +837,7 @@ Animator:
   m_GameObject: {fileID: 2593279756723862724}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 721c84885debb174c8d0bc1411da105f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 40c79e7fa1f57a04394d88099561173a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

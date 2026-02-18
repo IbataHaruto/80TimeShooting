@@ -26,7 +26,7 @@ public class AnimalStatusManager : MonoBehaviour
 
         int newValue = Mathf.Min(animal.currentFullness + gain, maxFullness);
 
-        // ★ Animal に満腹度更新を通知
+        //  Animal に満腹度更新を通知
         animal.SetFullness(newValue);
 
         bool isMax = newValue >= maxFullness;

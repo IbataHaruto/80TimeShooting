@@ -9,11 +9,13 @@ public class Animal : MonoBehaviour
     public int currentFullness;
     public bool isCaptured = false;
 
+    //  Meal 中かどうか（Enemy が制御）
+    public bool isEating = false;
+
     public bool CanEat => !isCaptured && currentFullness < manager.maxFullness;
 
-    // ★ イベント
     public event Action OnEat;
-    public event Action<bool> OnFullnessChanged; // isMax を渡す
+    public event Action<bool> OnFullnessChanged;
 
     private void Start()
     {
@@ -23,7 +25,6 @@ public class Animal : MonoBehaviour
     public void SetFullness(int value)
     {
         currentFullness = value;
-
         bool isMax = currentFullness >= manager.maxFullness;
         OnFullnessChanged?.Invoke(isMax);
     }
@@ -38,7 +39,7 @@ public class Animal : MonoBehaviour
         {
             manager.Feed(this, fruit.data);
 
-            //  食べたイベント
+            //  Meal 中でも OnEat は発火（満腹度は上がる）
             OnEat?.Invoke();
 
             Destroy(other.gameObject);
@@ -55,7 +56,6 @@ public class Animal : MonoBehaviour
             {
                 isCaptured = true;
                 manager.NotifyCaptured(data);
-                Debug.Log($"{data.animalName} を捕獲しました！");
                 Destroy(gameObject);
             }
 

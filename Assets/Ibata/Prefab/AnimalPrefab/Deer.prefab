@@ -566,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 720992726e53a3f4b80a6b6b291b8c15, type: 3}
       propertyPath: m_Name
-      value: Deer_model_3
+      value: Deer
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 720992726e53a3f4b80a6b6b291b8c15, type: 3}
       propertyPath: m_Layer

@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.5
+      value: 2.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       propertyPath: m_LocalPosition.z
@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       propertyPath: m_Name
-      value: SnowFairy1_1_1
+      value: SnowFairy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       propertyPath: m_Layer
@@ -248,13 +248,7 @@ PrefabInstance:
       addedObject: {fileID: 3713578407962406678}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5337505025065147561}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 293071146817568108}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6932109556504031186}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5a8190dda51f8a468d35603e5e90500, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7388995280159751407}
@@ -332,29 +326,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   currentFullness: 0
   isCaptured: 0
---- !u!114 &5337505025065147561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462948501092257015}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0002d996b45afd24989d1bb28b8a74c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 30
-  runSpeed: 50
-  target: {fileID: 0}
-  normalDetectRange: 10
-  stealthIgnoreRange: 4
-  stateChangeCooldown: 3
-  changeDirectionMin: 1.5
-  changeDirectionMax: 3
-  idleChangeMin: 2
-  idleChangeMax: 4
-  animal: {fileID: 3713578407962406678}
+  isEating: 0
 --- !u!114 &293071146817568108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,28 +348,6 @@ MonoBehaviour:
   changeMin: 1.5
   changeMax: 3
   animal: {fileID: 3713578407962406678}
---- !u!195 &6932109556504031186
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462948501092257015}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.1
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!65 &7388995280159751407
 BoxCollider:
   m_ObjectHideFlags: 0

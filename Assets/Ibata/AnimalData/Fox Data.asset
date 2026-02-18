@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5bdd2fcc321ff4c85ce01a342662bb, type: 3}
   m_Name: Fox Data
   m_EditorClassIdentifier: 
-  animalName: Fox
+  animalName: "\u30AD\u30C4\u30CD"
   favoriteFruits:
   - {fileID: 11400000, guid: 12a8a2309203c9546b8d6f9593f0b661, type: 2}
   fullness: 0
-  icon: {fileID: 1133705310, guid: 98b8d1fbfafbb474793e3f90e93c681b, type: 3}
+  icon: {fileID: -1490613600, guid: 39e7860330af1dd47b711cb76bd6718e, type: 3}
   description: 

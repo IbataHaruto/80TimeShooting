@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class GameGoalManager : MonoBehaviour
 {
     [System.Serializable]
@@ -11,18 +12,38 @@ public class GameGoalManager : MonoBehaviour
 
     public Goal[] goals;
 
+    public MissionInitilizeUI missionIntroUI;
+
+
     public bool IsCleared { get; private set; } = false;
 
     private AnimalStatusManager manager;
 
+
+    //  ミッション開始演出 UI（新規）
+    public MissionInitilizeUI missionInnitialUI;
+
     private void Start()
     {
         manager = FindObjectOfType<AnimalStatusManager>();
-
-        //  ScriptableObject の capturedCount をリセットしない（もう使わない）
-        // 代わりに manager の Dictionary がプレイ中だけ管理する
-
         manager.OnCaptured += OnAnimalCaptured;
+
+        ShowMissionIntro();
+    }
+
+    private void ShowMissionIntro()
+    {
+        string msg = "ミッション\n";
+
+        foreach (var g in goals)
+        {
+            string animal = $"<color=#FFCC00>{g.animal.animalName}</color>";
+            string count = $"<color=#FF7F50>{g.requiredCount}</color>";
+
+            msg += $"{animal} を {count} ひき捕まえろ\n";
+        }
+
+        missionIntroUI.Show(msg);
     }
 
     private void OnAnimalCaptured(AnimalData data)
@@ -47,4 +68,7 @@ public class GameGoalManager : MonoBehaviour
         }
         return true;
     }
+
+    // UI が必要なら呼べる API
+    public Goal[] GetGoals() => goals;
 }

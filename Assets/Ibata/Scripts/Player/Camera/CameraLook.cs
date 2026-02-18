@@ -62,7 +62,7 @@ public class CameraLook : MonoBehaviour
                 break;
 
             case ActiveDevice.Gamepad:
-                delta = stick * SensitivitySettings.ControllerSensitivity * adsMul * ControllerPlus;
+                delta = stick * SensitivitySettings.ControllerSensitivity * adsMul;
                 break;
         }
 

@@ -6,12 +6,11 @@ public class ThrowableObject : MonoBehaviour
     private Collider col;
 
     [Header("Gravity Settings")]
-    [SerializeField] private float upwardGravity = -9.81f;
-    [SerializeField] private float downwardGravity = -30f;
+    public float upwardGravity = -9.81f;
+    public float downwardGravity = -30f; // ← オブジェクトごとに調整可能
 
     private bool isThrown = false;
 
-    // ★ ポーズ中の速度保存用
     private Vector3 savedVelocity;
     private bool wasPaused = false;
 
@@ -52,31 +51,27 @@ public class ThrowableObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        //  ポーズ中の処理
         if (GameStateManager.IsPaused)
         {
             if (!wasPaused)
             {
-                // 初回だけ保存
                 savedVelocity = rb.linearVelocity;
-                rb.isKinematic = true;   // 完全停止
+                rb.isKinematic = true;
                 wasPaused = true;
             }
             return;
         }
 
-        //  ポーズ解除時の処理
         if (wasPaused)
         {
-            rb.isKinematic = false;       // 物理再開
-            rb.linearVelocity = savedVelocity; // 速度復元
+            rb.isKinematic = false;
+            rb.linearVelocity = savedVelocity;
             wasPaused = false;
         }
 
         if (!isThrown || rb.isKinematic)
             return;
 
-        // 独自重力
         float g = rb.linearVelocity.y > 0 ? upwardGravity : downwardGravity;
         rb.AddForce(Vector3.up * g, ForceMode.Acceleration);
     }

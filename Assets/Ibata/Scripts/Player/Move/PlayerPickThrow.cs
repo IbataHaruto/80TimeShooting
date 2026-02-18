@@ -13,9 +13,9 @@ public class PlayerPickThrow : MonoBehaviour
     [SerializeField] private float throwPos = 1.5f;
     [SerializeField] private float pitchAdjust = -10f;
 
-    [Header("Custom Gravity")]
-    [SerializeField] private float upwardGravity = -9.81f;
-    [SerializeField] private float downwardGravity = -30f;
+    [Header("Custom Gravity (Fallback)")]
+    [SerializeField] private float defaultUpGravity = -9.81f;
+    [SerializeField] private float defaultDownGravity = -9.81f;
 
     [SerializeField] private InventoryModel inventory;
     [SerializeField] private ThrowItemInventory throwInventory;
@@ -32,7 +32,9 @@ public class PlayerPickThrow : MonoBehaviour
     [Header("Trajectory Preview")]
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private int trajectoryPoints = 10;
-    [SerializeField] private float timeStep = 0.03f;
+    [SerializeField] private float lineFadeSpeed = 8f;
+
+    private float lineAlpha = 0f;
 
     private PlayerInput input;
     private InputAction interactAction;
@@ -55,26 +57,18 @@ public class PlayerPickThrow : MonoBehaviour
         if (GameStateManager.IsPaused)
         {
             if (trajectoryLine != null)
-                trajectoryLine.enabled = false;
+                SetLineAlpha(0f);
             return;
         }
 
         bool isDash = PlayerStateManager.Instance.CurrentState == PlayerState.Dash;
 
-        // ============================================================
-        //  LineRenderer は ダッシュのリターン の前に必ず更新する
-        // ============================================================
         UpdateTrajectoryLine(isDash);
+        UpdateLineFade(isDash);
 
-        // ============================================================
-        // ここから先は return しても OK（Line は既に更新済み）
-        // ============================================================
-
-        // ダッシュ中は手持ちアイテム非表示
         if (hand.CurrentInstance != null)
             hand.CurrentInstance.gameObject.SetActive(!isDash);
 
-        // クロスヘア判定
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         IInteractable target = null;
 
@@ -83,19 +77,15 @@ public class PlayerPickThrow : MonoBehaviour
 
         crosshair.SetCanPick(target != null);
 
-        // Interact
         if (interactAction.WasPressedThisFrame() && target != null)
         {
             target.Interact();
             return;
         }
-        //ダッシュ中は投げれない
+
         if (isDash)
             return;
 
-        // ============================================================
-        // 投げ方向計算
-        // ============================================================
         Vector3 dir = ray.direction;
         dir = Quaternion.AngleAxis(pitchAdjust, cam.transform.right) * dir;
 
@@ -106,9 +96,6 @@ public class PlayerPickThrow : MonoBehaviour
 
         Vector3 spawnPos = ray.origin + ray.direction * adjustedThrowPos;
 
-        // ============================================================
-        // 投げる処理
-        // ============================================================
         if (throwAction.WasPressedThisFrame())
         {
             if (isCaptureMode)
@@ -120,7 +107,6 @@ public class PlayerPickThrow : MonoBehaviour
                 }
 
                 Quaternion rot = Quaternion.LookRotation(cam.transform.forward) * Quaternion.Euler(-90, 0, 0);
-
                 var world = Instantiate(captureItemPrefab, spawnPos, rot);
                 var throwable = world.GetComponent<ThrowableObject>();
                 throwable.Throw(dir * captureThrowForce);
@@ -141,7 +127,6 @@ public class PlayerPickThrow : MonoBehaviour
             }
         }
 
-        // メッセージフェードアウト
         if (messageTimer > 0f)
         {
             messageTimer -= Time.deltaTime;
@@ -150,9 +135,9 @@ public class PlayerPickThrow : MonoBehaviour
         }
     }
 
-    // ============================================================
-    // LineRenderer 更新（ダッシュ中でも毎フレーム実行）
-    // ============================================================
+    // ================================
+    // 軌道描画
+    // ================================
     private void UpdateTrajectoryLine(bool isDash)
     {
         if (trajectoryLine == null)
@@ -160,8 +145,6 @@ public class PlayerPickThrow : MonoBehaviour
 
         if (ADSController.IsADS && !isDash)
         {
-            trajectoryLine.enabled = true;
-
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             Vector3 dir = ray.direction;
             dir = Quaternion.AngleAxis(pitchAdjust, cam.transform.right) * dir;
@@ -173,16 +156,26 @@ public class PlayerPickThrow : MonoBehaviour
 
             Vector3 spawnPos = ray.origin + ray.direction * adjustedThrowPos;
 
+            float upG = defaultUpGravity;
+            float downG = defaultDownGravity;
+
+            if (hand.CurrentInstance != null)
+            {
+                var to = hand.CurrentInstance.GetComponent<ThrowableObject>();
+                if (to != null)
+                {
+                    upG = to.upwardGravity;
+                    downG = to.downwardGravity;
+                }
+            }
+
             float force = isCaptureMode ? captureThrowForce : throwForce;
-            DrawTrajectory(spawnPos, dir * force);
-        }
-        else
-        {
-            trajectoryLine.enabled = false;
+
+            DrawTrajectory(spawnPos, dir * force, upG, downG);
         }
     }
 
-    private void DrawTrajectory(Vector3 startPos, Vector3 startVelocity)
+    private void DrawTrajectory(Vector3 startPos, Vector3 startVelocity, float upG, float downG)
     {
         trajectoryLine.positionCount = trajectoryPoints;
 
@@ -193,16 +186,42 @@ public class PlayerPickThrow : MonoBehaviour
         {
             trajectoryLine.SetPosition(i, pos);
 
-            float g = vel.y > 0 ? upwardGravity : downwardGravity;
+            float g = vel.y > 0 ? upG : downG;
 
-            vel += Vector3.up * g * timeStep;
-            pos += vel * timeStep;
+            vel += Vector3.up * g * Time.fixedDeltaTime;
+            pos += vel * Time.fixedDeltaTime;
         }
+    }
+
+    // ================================
+    // LineRenderer の透明度フェード（修正版）
+    // ================================
+    private void UpdateLineFade(bool isDash)
+    {
+        float target = (ADSController.IsADS && !isDash) ? 1f : 0f;
+
+        lineAlpha = Mathf.MoveTowards(lineAlpha, target, Time.deltaTime * lineFadeSpeed);
+        SetLineAlpha(lineAlpha);
+    }
+
+    // LineRenderer の透明度を start/endColor で変更（最重要修正）
+    private void SetLineAlpha(float alpha)
+    {
+        if (trajectoryLine == null) return;
+
+        Color sc = trajectoryLine.startColor;
+        Color ec = trajectoryLine.endColor;
+
+        sc.a = alpha;
+        ec.a = alpha;
+
+        trajectoryLine.startColor = sc;
+        trajectoryLine.endColor = ec;
     }
 
     public void ShowFullMessage()
     {
-        inventoryMessageText.text = "Inventory is Full";
+        inventoryMessageText.text = "インベントリーがいっぱいです";
         inventoryMessageText.alpha = 1f;
         messageTimer = 1.5f;
     }
