@@ -8,7 +8,6 @@ public class AnimalStatusManager : MonoBehaviour
     public event System.Action<Animal, bool> OnFullnessChanged;
     public event System.Action<AnimalData> OnCaptured;
 
-    //  動物ごとの捕獲数（プレイ中のみ）
     private Dictionary<AnimalData, int> capturedCounts = new();
 
     public int GetCapturedCount(AnimalData data)
@@ -25,9 +24,12 @@ public class AnimalStatusManager : MonoBehaviour
 
         int gain = isFavorite ? fruit.score * 2 : fruit.score;
 
-        animal.currentFullness = Mathf.Min(animal.currentFullness + gain, maxFullness);
+        int newValue = Mathf.Min(animal.currentFullness + gain, maxFullness);
 
-        bool isMax = animal.currentFullness >= maxFullness;
+        // ★ Animal に満腹度更新を通知
+        animal.SetFullness(newValue);
+
+        bool isMax = newValue >= maxFullness;
         OnFullnessChanged?.Invoke(animal, isMax);
     }
 
@@ -38,7 +40,6 @@ public class AnimalStatusManager : MonoBehaviour
         return rand < rate;
     }
 
-    //  捕獲成功時に呼ぶ（動物ごとのカウントを増やす）
     public void NotifyCaptured(AnimalData data)
     {
         if (!capturedCounts.ContainsKey(data))

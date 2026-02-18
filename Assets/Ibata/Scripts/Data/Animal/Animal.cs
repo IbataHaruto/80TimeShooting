@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Animal : MonoBehaviour
 {
@@ -10,9 +11,21 @@ public class Animal : MonoBehaviour
 
     public bool CanEat => !isCaptured && currentFullness < manager.maxFullness;
 
+    // ★ イベント
+    public event Action OnEat;
+    public event Action<bool> OnFullnessChanged; // isMax を渡す
+
     private void Start()
     {
         currentFullness = data.fullness;
+    }
+
+    public void SetFullness(int value)
+    {
+        currentFullness = value;
+
+        bool isMax = currentFullness >= manager.maxFullness;
+        OnFullnessChanged?.Invoke(isMax);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +37,10 @@ public class Animal : MonoBehaviour
         if (fruit != null && CanEat)
         {
             manager.Feed(this, fruit.data);
+
+            //  食べたイベント
+            OnEat?.Invoke();
+
             Destroy(other.gameObject);
             return;
         }
@@ -37,10 +54,7 @@ public class Animal : MonoBehaviour
             if (captured)
             {
                 isCaptured = true;
-
-                //  捕獲通知（カウントは manager が管理）
                 manager.NotifyCaptured(data);
-
                 Debug.Log($"{data.animalName} を捕獲しました！");
                 Destroy(gameObject);
             }

@@ -16,5 +16,5 @@ MonoBehaviour:
   favoriteFruits:
   - {fileID: 11400000, guid: 843d523f146f22648b2782ee1b1e025a, type: 2}
   fullness: 0
-  capturedCount: 0
-  icon: {fileID: 1341661997, guid: 433ed81c876bf50498b071a1f32d4910, type: 3}
+  icon: {fileID: 1283423062, guid: 91b2f4dd65446a24a971f53b5f21fe37, type: 3}
+  description: 

@@ -22,6 +22,6 @@ public class AnimalCapturedUI : MonoBehaviour
     private void UpdateUI()
     {
         int count = manager.GetCapturedCount(targetAnimal);
-        text.text = $"{targetAnimal.animalName}: {count}";
+        text.text = $"Capture: {count}";
     }
 }
