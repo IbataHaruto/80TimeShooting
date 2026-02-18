@@ -998,7 +998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b2bc8d55831d952499088044ab65a83e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b2bc8d55831d952499088044ab65a83e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1335,8 +1335,8 @@ GameObject:
   - component: {fileID: 499710621}
   - component: {fileID: 499710620}
   - component: {fileID: 499710619}
-  - component: {fileID: 499710622}
   - component: {fileID: 499710623}
+  - component: {fileID: 499710624}
   m_Layer: 5
   m_Name: MissionButton7
   m_TagString: Untagged
@@ -1408,16 +1408,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &499710620
@@ -1458,20 +1458,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499710617}
   m_CullTransparentMesh: 1
---- !u!114 &499710622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499710617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &499710623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1473,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &499710624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499710617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1 &643593681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643593681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1571,8 +1571,8 @@ GameObject:
   - component: {fileID: 708522361}
   - component: {fileID: 708522360}
   - component: {fileID: 708522359}
-  - component: {fileID: 708522362}
   - component: {fileID: 708522363}
+  - component: {fileID: 708522364}
   m_Layer: 5
   m_Name: MissionButton3
   m_TagString: Untagged
@@ -1644,16 +1644,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &708522360
@@ -1694,20 +1694,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708522357}
   m_CullTransparentMesh: 1
---- !u!114 &708522362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708522357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &708522363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,6 +1709,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &708522364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708522357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1 &792315261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1830,7 @@ Transform:
   m_GameObject: {fileID: 792315261}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 45, z: 55}
+  m_LocalPosition: {x: -5.39, y: 45, z: 30}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2124,7 +2124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &900271061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2877,8 +2877,8 @@ GameObject:
   - component: {fileID: 1147123981}
   - component: {fileID: 1147123980}
   - component: {fileID: 1147123979}
-  - component: {fileID: 1147123982}
   - component: {fileID: 1147123983}
+  - component: {fileID: 1147123984}
   m_Layer: 5
   m_Name: MissionButton1
   m_TagString: Untagged
@@ -3000,20 +3000,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147123977}
   m_CullTransparentMesh: 1
---- !u!114 &1147123982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147123977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &1147123983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3029,6 +3015,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &1147123984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147123977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1 &1179555267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,8 +3041,8 @@ GameObject:
   - component: {fileID: 1179555271}
   - component: {fileID: 1179555270}
   - component: {fileID: 1179555269}
-  - component: {fileID: 1179555272}
   - component: {fileID: 1179555273}
+  - component: {fileID: 1179555274}
   m_Layer: 5
   m_Name: MissionButton4
   m_TagString: Untagged
@@ -3114,16 +3114,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1179555270
@@ -3164,20 +3164,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179555267}
   m_CullTransparentMesh: 1
---- !u!114 &1179555272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179555267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &1179555273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,6 +3179,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &1179555274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179555267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1 &1203445810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3343,8 +3343,8 @@ GameObject:
   - component: {fileID: 1260766788}
   - component: {fileID: 1260766787}
   - component: {fileID: 1260766786}
-  - component: {fileID: 1260766789}
   - component: {fileID: 1260766790}
+  - component: {fileID: 1260766791}
   m_Layer: 5
   m_Name: MissionButton5
   m_TagString: Untagged
@@ -3416,16 +3416,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1260766787
@@ -3466,20 +3466,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260766784}
   m_CullTransparentMesh: 1
---- !u!114 &1260766789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260766784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &1260766790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3495,6 +3481,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &1260766791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260766784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1 &1288909144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3659,8 +3659,8 @@ GameObject:
   - component: {fileID: 1462395213}
   - component: {fileID: 1462395212}
   - component: {fileID: 1462395211}
-  - component: {fileID: 1462395214}
   - component: {fileID: 1462395215}
+  - component: {fileID: 1462395216}
   m_Layer: 5
   m_Name: MissionButton6
   m_TagString: Untagged
@@ -3732,16 +3732,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1462395212
@@ -3782,20 +3782,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462395209}
   m_CullTransparentMesh: 1
---- !u!114 &1462395214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462395209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &1462395215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3811,6 +3797,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &1462395216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462395209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!4 &1488829006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2bc8d55831d952499088044ab65a83e, type: 3}
@@ -5037,7 +5037,6 @@ GameObject:
   - component: {fileID: 2015151232}
   - component: {fileID: 2015151231}
   - component: {fileID: 2015151236}
-  - component: {fileID: 2015151235}
   - component: {fileID: 2015151237}
   m_Layer: 5
   m_Name: Canvas
@@ -5132,18 +5131,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2015151235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015151230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9685df9d9a6b15c4480e80e107961a7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2015151236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5407,8 +5394,8 @@ GameObject:
   - component: {fileID: 2049439233}
   - component: {fileID: 2049439232}
   - component: {fileID: 2049439231}
-  - component: {fileID: 2049439234}
   - component: {fileID: 2049439235}
+  - component: {fileID: 2049439236}
   m_Layer: 5
   m_Name: MissionButton2
   m_TagString: Untagged
@@ -5480,16 +5467,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015151235}
-        m_TargetAssemblyTypeName: BottonManajer, Assembly-CSharp
-        m_MethodName: SampleBotton2
-        m_Mode: 1
+      - m_Target: {fileID: 2015151237}
+        m_TargetAssemblyTypeName: FadeManajer, Assembly-CSharp
+        m_MethodName: StartSceneTransition
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: inGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2049439232
@@ -5530,20 +5517,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049439229}
   m_CullTransparentMesh: 1
---- !u!114 &2049439234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049439229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverScale: {x: 1.2, y: 1.2, z: 1}
-  scaleSpeed: 10
 --- !u!114 &2049439235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5559,6 +5532,20 @@ MonoBehaviour:
   selectedScale: 1.2
   normalScale: 1
   animationSpeed: 10
+--- !u!114 &2049439236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049439229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1cb7eb651df41a4cf5ea48ec6feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: {x: 1.2, y: 1.2, z: 1}
+  scaleSpeed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

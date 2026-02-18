@@ -169,6 +169,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0c629f48-48c1-4f4e-a984-c7cd5a0c6712",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a0b97d43-1800-48ae-b1fa-563317c5fc12",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -191,6 +202,28 @@
                 },
                 {
                     "name": "",
+                    "id": "0098f1a3-2821-4dfe-a691-cf9f91c90c61",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0bdb56b3-8903-49d5-80de-691bc782f5d1",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "46933dbf-3ca4-4d94-99da-8e0b2536892e",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -204,6 +237,17 @@
                     "name": "",
                     "id": "4377c34f-7e24-4a4c-be2e-33651b728c12",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "002cb112-ecb1-4de5-b8a7-cba0ea2a6e4f",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

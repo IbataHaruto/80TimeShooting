@@ -3,12 +3,25 @@ using UnityEngine.EventSystems;
 
 public class SelectSe : MonoBehaviour
 {
+    public static SelectSe Instance;
+
     [SerializeField] AudioSource seSource;
     [SerializeField] AudioClip selectSe;
 
-    public void OnSelect(BaseEventData eventData)
+    private void Awake()
     {
-        // ボタン選択中にSEを鳴らす
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void PlaySelect()
+    {
         seSource.PlayOneShot(selectSe);
     }
 }

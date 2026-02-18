@@ -61,14 +61,6 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         cCon.Move(velocity * Time.deltaTime);
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject go = collision.gameObject;
-        if (go.CompareTag("Respawn"))
-        {
-            Debug.Log("Board");
-        }
-    }
     void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
