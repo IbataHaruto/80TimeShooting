@@ -24,7 +24,7 @@ public class PauseManager : MonoBehaviour
     public void PauseSwitch()
     {
         float dis = Vector3.Distance(target2.position, target.position);
-        if (dis <= 20 )
+        if (dis <= 50 )
         {
             if (isPaused)
             {

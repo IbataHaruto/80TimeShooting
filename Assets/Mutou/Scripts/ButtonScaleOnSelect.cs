@@ -23,11 +23,6 @@ public class ButtonScaleOnSelect : MonoBehaviour, ISelectHandler, IDeselectHandl
     {
         // スムーズに拡大縮小
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * animationSpeed);
-        if (Input.GetKeyDown("joystick button 2"))
-        {
-            Debug.Log("ボタンが押されました");
-        }
-
     }
 
     // 選択されたとき（コントローラーやキーボードで移動したときも呼ばれる）
