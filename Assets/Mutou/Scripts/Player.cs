@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 0.1f;
     [SerializeField] float gravity = -9.81f;     // 重力加速度
     [SerializeField] EnemyMover enemy;
-    [SerializeField] BirdScript birdScript;
     [SerializeField] Rigidbody rb;
     [SerializeField] CharacterController cCon;
     [SerializeField] float slopeLimit = 45f;     // 登れる最大傾斜角度
@@ -53,24 +52,14 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             enemy.PlayerShift();
-            birdScript.ShiftObject();
         }
         else
         {
             enemy.DontPlayerShift();
-            birdScript.DontShiftObject();
         }
         // 重力適用
         velocity.y += gravity * Time.deltaTime;
         cCon.Move(velocity * Time.deltaTime);
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject go = collision.gameObject;
-        if (go.CompareTag("Respawn"))
-        {
-            Debug.Log("Board");
-        }
     }
     void HandleMouseLook()
     {
